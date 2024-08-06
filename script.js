@@ -1,54 +1,60 @@
-document.addEventListener('DOMContentLoaded', function() {
-    const searchButton = document.getElementById('searchButton');
-    const searchBox = document.getElementById('searchBox');
-    const searchResults = document.getElementById('searchResults');
-    const nextButton = document.getElementById('nextButton');
+/* styles.css */
 
-    searchButton.addEventListener('click', function() {
-        const query = searchBox.value.trim();
-        if (query) {
-            performSearch(query);
-        }
-    });
+/* Reset default browser styles */
+body, h1, p, input, button {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+}
 
-    // Perform search using a public API
-    function performSearch(query) {
-        const apiKey = 'YOUR_API_KEY'; // Replace with your real API key
-        const searchEngineId = 'YOUR_SEARCH_ENGINE_ID'; // Replace with your real search engine ID
-        const url = `https://www.googleapis.com/customsearch/v1?q=${encodeURIComponent(query)}&key=${apiKey}&cx=${searchEngineId}`;
+/* Set background color for the whole page */
+body {
+    background-color: #36393f;
+    color: #ffffff;
+}
 
-        fetch(url)
-            .then(response => response.json())
-            .then(data => {
-                displayResults(data);
-            })
-            .catch(error => {
-                console.error('Error fetching search results:', error);
-                searchResults.innerHTML = '<p>Error fetching search results.</p>';
-            });
-    }
+/* Style the header section */
+header {
+    background-color: #7289da;
+    text-align: center;
+    padding: 20px;
+}
 
-    function displayResults(data) {
-        searchResults.innerHTML = ''; // Clear previous results
+/* Style the logo image */
+img {
+    max-width: 100px;
+}
 
-        if (data.items && data.items.length > 0) {
-            data.items.forEach(item => {
-                const resultItem = document.createElement('div');
-                resultItem.className = 'result-item';
-                resultItem.innerHTML = `
-                    <a href="${item.link}" target="_blank">${item.title}</a>
-                    <p>${item.snippet}</p>
-                `;
-                searchResults.appendChild(resultItem);
-            });
-        } else {
-            searchResults.innerHTML = '<p>No results found.</p>';
-        }
-    }
+/* Style the search input field */
+input[type="text"] {
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    margin-right: 10px;
+    width: 300px;
+    background-color: #2c2f33;
+    color: #ffffff;
+}
 
-    // Optional: Implement functionality for 'Next' button
-    nextButton.addEventListener('click', function() {
-        // Logic for handling "Next" button, if needed
-        alert('Next button clicked! Implement pagination or additional functionality here.');
-    });
-});
+/* Style the search button */
+button#search-button {
+    background-color: #43b581;
+    color: #ffffff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+/* Center align the main content */
+main {
+    text-align: center;
+    margin-top: 20px;
+}
+
+/* Style the footer */
+footer {
+    text-align: center;
+    padding: 20px;
+    font-size: 12px;
+}
