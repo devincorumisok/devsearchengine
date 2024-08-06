@@ -1,8 +1,7 @@
 /* styles.css */
 body {
     font-family: Arial, sans-serif;
-    background-color: #36393f;
-    color: #ffffff;
+    background-color: #f7f7f7;
     margin: 0;
     padding: 0;
 }
@@ -14,21 +13,21 @@ body {
 }
 
 input[type="text"] {
-    padding: 0.5rem;
-    font-size: 1rem;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 300px;
 }
 
 button {
-    padding: 0.5rem 1rem;
-    font-size: 1rem;
+    padding: 10px 20px;
+    font-size: 16px;
     background-color: #007BFF;
     color: white;
     border: none;
+    border-radius: 5px;
     cursor: pointer;
-}
-
-button:hover {
-    background-color: #0056B3;
 }
 
 #searchResults {
