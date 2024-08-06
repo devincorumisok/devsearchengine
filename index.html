@@ -7,18 +7,11 @@
     <title>DevSearchEngine</title>
 </head>
 <body>
-    <header>
-        <img src="logo.png" alt="DevSearchEngine Logo">
-        <h1>DevSearchEngine</h1>
-    </header>
-    <main>
-        <input type="text" id="search-input" placeholder="Search...">
-        <button id="search-button">Search</button>
-        <div id="results-container"></div>
-    </main>
-    <footer>
-        <p>© 2024 DevSearchEngine</p>
-    </footer>
+    <div class="search-container">
+        <input type="text" id="searchInput" placeholder="Search...">
+        <button onclick="search()">Search</button>
+    </div>
+    <div id="searchResults"></div>
     <script src="script.js"></script>
 </body>
 </html>

@@ -1,44 +1,33 @@
 // script.js
+async function search() {
+    const searchInput = document.getElementById('searchInput').value.trim();
+    const searchResults = document.getElementById('searchResults');
 
-// Get references to the input field and search button
-const searchInput = document.getElementById('search-input');
-const searchButton = document.getElementById('search-button');
-const resultsContainer = document.getElementById('results-container');
+    // Clear previous results
+    searchResults.innerHTML = '';
 
-// Sample data (you can replace this with your actual data)
-const sampleData = [
-    { title: 'Apple', url: 'https://www.apple.com' },
-    { title: 'GitHub', url: 'https://github.com' },
-    // Add more sample data here
-];
-
-// Event listener for the search button
-searchButton.addEventListener('click', () => {
-    const query = searchInput.value.trim().toLowerCase();
-    if (query) {
-        const filteredResults = sampleData.filter(item =>
-            item.title.toLowerCase().includes(query)
-        );
-
-        displayResults(filteredResults);
-    } else {
-        // Clear results if search field is empty
-        displayResults([]);
-    }
-});
-
-// Display search results
-function displayResults(results) {
-    resultsContainer.innerHTML = ''; // Clear previous results
-
-    if (results.length === 0) {
-        resultsContainer.innerHTML = '<p>No results found.</p>';
+    if (!searchInput) {
+        // If search input is empty, show a message
+        searchResults.innerHTML = '<p>Please enter a search query.</p>';
         return;
     }
 
-    results.forEach(item => {
-        const resultItem = document.createElement('div');
-        resultItem.innerHTML = `<a href="${item.url}" target="_blank">${item.title}</a>`;
-        resultsContainer.appendChild(resultItem);
-    });
+    try {
+        // Fetch live data from the Google Dataset Search API
+        const response = await fetch(`https://datasetsearch.research.google.com/api/search?query=${encodeURIComponent(searchInput)}`);
+        const data = await response.json();
+
+        if (data.results.length === 0) {
+            searchResults.innerHTML = '<p>No results found.</p>';
+        } else {
+            data.results.forEach(item => {
+                const resultItem = document.createElement('div');
+                resultItem.innerHTML = `<a href="${item.url}" target="_blank">${item.name}</a>`;
+                searchResults.appendChild(resultItem);
+            });
+        }
+    } catch (error) {
+        console.error('Error fetching data:', error);
+        searchResults.innerHTML = '<p>Oops! Something went wrong. Please try again later.</p>';
+    }
 }
