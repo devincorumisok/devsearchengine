@@ -7,36 +7,27 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div id="app">
-        <!-- Header -->
-        <header>
-            <div class="logo">
-                <img src="logo.png" alt="DEVSEARCHENGINE Logo">
-                <h1>DEVSEARCHENGINE</h1>
+    <header>
+        <div class="logo">
+            <img src="https://i.imgur.com/x4P0O7H.png" alt="DEVSEARCHENGINE Logo">
+            <h1>DEVSEARCHENGINE</h1>
+        </div>
+    </header>
+    <main>
+        <div class="search-section">
+            <h2>Search the Web</h2>
+            <div class="search-container">
+                <input type="text" id="searchBox" placeholder="Enter search query">
+                <button id="searchButton">Search</button>
             </div>
-        </header>
-
-        <!-- Main Content -->
-        <main>
-            <section class="search-section">
-                <div class="search-container">
-                    <input type="text" id="searchBox" placeholder="Search .onion sites..." aria-label="Search">
-                    <button id="searchButton" aria-label="Search">Search</button>
-                </div>
-                <div id="searchResults" class="results-container">
-                    <!-- Search results will be dynamically inserted here -->
-                </div>
-                <button id="nextButton" class="next-button">Next</button>
-                <p id="searchExplanation">Tap Next to view results using your keyword.</p>
-            </section>
-        </main>
-
-        <!-- Footer -->
-        <footer>
-            <p>&copy; 2024 DEVSEARCHENGINE. All rights reserved.</p>
-        </footer>
-    </div>
-    
+            <p id="searchExplanation">Tap 'Search' to view results.</p>
+            <div id="searchResults" class="results-container"></div>
+            <button id="nextButton" class="next-button">Next</button>
+        </div>
+    </main>
+    <footer>
+        <p>&copy; 2024 DEVSEARCHENGINE. All rights reserved.</p>
+    </footer>
     <script src="script.js"></script>
 </body>
 </html>
