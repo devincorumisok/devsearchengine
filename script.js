@@ -1,60 +1,44 @@
-/* styles.css */
+// script.js
 
-/* Reset default browser styles */
-body, h1, p, input, button {
-    margin: 0;
-    padding: 0;
-    font-family: Arial, sans-serif;
-}
+// Get references to the input field and search button
+const searchInput = document.getElementById('search-input');
+const searchButton = document.getElementById('search-button');
+const resultsContainer = document.getElementById('results-container');
 
-/* Set background color for the whole page */
-body {
-    background-color: #36393f;
-    color: #ffffff;
-}
+// Sample data (you can replace this with your actual data)
+const sampleData = [
+    { title: 'Apple', url: 'https://www.apple.com' },
+    { title: 'GitHub', url: 'https://github.com' },
+    // Add more sample data here
+];
 
-/* Style the header section */
-header {
-    background-color: #7289da;
-    text-align: center;
-    padding: 20px;
-}
+// Event listener for the search button
+searchButton.addEventListener('click', () => {
+    const query = searchInput.value.trim().toLowerCase();
+    if (query) {
+        const filteredResults = sampleData.filter(item =>
+            item.title.toLowerCase().includes(query)
+        );
 
-/* Style the logo image */
-img {
-    max-width: 100px;
-}
+        displayResults(filteredResults);
+    } else {
+        // Clear results if search field is empty
+        displayResults([]);
+    }
+});
 
-/* Style the search input field */
-input[type="text"] {
-    padding: 10px;
-    border: none;
-    border-radius: 5px;
-    margin-right: 10px;
-    width: 300px;
-    background-color: #2c2f33;
-    color: #ffffff;
-}
+// Display search results
+function displayResults(results) {
+    resultsContainer.innerHTML = ''; // Clear previous results
 
-/* Style the search button */
-button#search-button {
-    background-color: #43b581;
-    color: #ffffff;
-    border: none;
-    border-radius: 5px;
-    padding: 10px 20px;
-    cursor: pointer;
-}
+    if (results.length === 0) {
+        resultsContainer.innerHTML = '<p>No results found.</p>';
+        return;
+    }
 
-/* Center align the main content */
-main {
-    text-align: center;
-    margin-top: 20px;
-}
-
-/* Style the footer */
-footer {
-    text-align: center;
-    padding: 20px;
-    font-size: 12px;
+    results.forEach(item => {
+        const resultItem = document.createElement('div');
+        resultItem.innerHTML = `<a href="${item.url}" target="_blank">${item.title}</a>`;
+        resultsContainer.appendChild(resultItem);
+    });
 }
